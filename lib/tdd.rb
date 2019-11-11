@@ -12,4 +12,29 @@ class Alimento
       @terreno = terreno
     end
 
+    def get_nombre
+      "Nombre: #{@nombre}"
+    end
+
+    def get_gei
+      "GEI: #{@gei} kgCO2eq"
+    end
+
+    def get_terreno
+      "Terreno: #{@terreno} m2/año"
+    end
+
+    def to_s
+      "Nombre: #{@nombre}\n " +
+      "Proteinas: #{@proteinas}\n " +
+      "Carbohidratos: #{@carbohidratos}\n " +
+      "Lipidos: #{@lipidos}\n " +
+      "GEI: #{@gei}\n " +
+      "Terreno: #{@terreno}"
+    end
+
+    def valor_energetico
+      (@lipidos * 9) + (@proteinas * 4) + (@carbohidratos * 4)
+    end
+
 end
