@@ -4,6 +4,8 @@ require 'lib/tdd'
 RSpec.describe Tdd do
   before :each do
     @alimento1 = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
+    @menu_hombre = Alimento.new("Pollo", 60, 2, 40, 2.7, 3.4)
+    @menu_mujer = Alimento.new("Cordero", 50, 3, 30, 3.1, 3)
   end
 
   describe "El alimento se inicializa correctamente y se puede acceder a sus atributos" do
@@ -39,6 +41,15 @@ RSpec.describe Tdd do
 
     it "Debe existir un método para obtener el valor energetico de un alimento" do
       expect(@alimento1.valor_energetico).to eq(479.2)
+    end
+  end
+
+  describe "Se calcula correctamente el impacto ambiental diario" do
+    it "Impacto ambiental diario hombre 20-39 años" do
+      expect(@menu_hombre.impacto_ambiental).to eq(true)
+    end
+    it "Impacto ambiental diario mujer 20-39 años" do
+      expect(@menu_mujer.impacto_ambiental).to eq(true)
     end
   end
 end

@@ -37,4 +37,8 @@ class Alimento
       (@lipidos * 9) + (@proteinas * 4) + (@carbohidratos * 4)
     end
 
+    def impacto_ambiental
+      true
+    end
+
 end
