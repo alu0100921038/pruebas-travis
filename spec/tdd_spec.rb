@@ -1,11 +1,15 @@
 require "spec_helper"
 require 'lib/tdd'
+require 'lib/listaDE'
 
 RSpec.describe Tdd do
-  before :each do
+  before :all do
     @alimento1 = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
     @menu_hombre = Alimento.new("Pollo", 60, 2, 40, 2.7, 3.4)
     @menu_mujer = Alimento.new("Cordero", 50, 3, 30, 3.1, 3)
+
+    @node = Node.new(nil,nil,nil);
+    @lista = ListaDE.new("Hola");
   end
 
   ################################################
@@ -61,4 +65,16 @@ RSpec.describe Tdd do
   # Pruebas practica 7 - Lista Doblemente Enlazada #
   ################################################
 
+  describe "Lista doblemente enlazada - comprobación acceso atributos y métodos" do
+    it "Debe existir un nodo de la lista con sus datos, su siguiente y su previo" do
+      expect(@lista.head.value).to eq(nil)
+      expect(@lista.head.next).to eq(nil)
+      expect(@lista.head.prev).to eq(nil)
+    end
+
+    it "Debe existir una Lista con su cabeza y su cola" do
+      expect(@lista.head).to eq(@node)
+      expect(@lista.tail).to eq(@node)
+    end
+  end
 end
