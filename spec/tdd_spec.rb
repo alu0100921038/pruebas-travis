@@ -8,6 +8,10 @@ RSpec.describe Tdd do
     @menu_mujer = Alimento.new("Cordero", 50, 3, 30, 3.1, 3)
   end
 
+  ################################################
+  # Pruebas practica 6 - Alimentos #
+  ################################################
+
   describe "El alimento se inicializa correctamente y se puede acceder a sus atributos" do
     it "Debe existir un nombre para el alimento" do
       expect(@alimento1.nombre).to eq("Chocolate")
@@ -52,4 +56,10 @@ RSpec.describe Tdd do
       expect(@menu_mujer.impacto_ambiental).to eq(true)
     end
   end
+
+  ################################################
+  # Pruebas practica 7 - Lista DE #
+  ################################################
+
+
 end
