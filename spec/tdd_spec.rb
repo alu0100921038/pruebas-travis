@@ -87,8 +87,19 @@ RSpec.describe Tdd do
 
     it "Se pueden insertar varios elementos en la Lista" do
       @lista2.insertarHead("Hola")
-      @lista2.insertarHead("Adios")
-      expect(@lista2.head.value).to eq("Adios")
+      @lista2.insertarHead("Adiós")
+      expect(@lista2.head.value).to eq("Adiós")
+    end
+
+    it "Se extrae el primer elemento de la Lista" do
+      expect(@lista2.extraerHead.value).to eq("Adiós")
+      expect(@lista2.extraerHead.value).to eq("Hola")
+    end
+
+    it "Se extrae el último elemento de la Lista" do
+      @lista2.insertarHead("Hola")
+      @lista2.insertarHead("Adiós")
+      expect(@lista2.extraerTail.value).to eq("Hola")
     end
   end
 end
