@@ -9,7 +9,10 @@ RSpec.describe Tdd do
     @menu_mujer = Alimento.new("Cordero", 50, 3, 30, 3.1, 3)
 
     @node = Node.new(nil,nil,nil);
-    @lista = ListaDE.new("Hola");
+    @node2 = Node.new("Hola",nil,nil)
+    @lista = ListaDE.new();
+
+    @lista2 = ListaDE.new()
   end
 
   ################################################
@@ -75,6 +78,17 @@ RSpec.describe Tdd do
     it "Debe existir una Lista con su cabeza y su cola" do
       expect(@lista.head).to eq(@node)
       expect(@lista.tail).to eq(@node)
+    end
+
+    it "Se puede insertar un elemento en la Lista" do
+      @lista2.insertarHead("Hola")
+      expect(@lista2.head.value).to eq("Hola")
+    end
+
+    it "Se pueden insertar varios elementos en la Lista" do
+      @lista2.insertarHead("Hola")
+      @lista2.insertarHead("Adios")
+      expect(@lista2.head.value).to eq("Adios")
     end
   end
 end
