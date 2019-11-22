@@ -40,5 +40,4 @@ class Alimento
     def impacto_ambiental
       true
     end
-
 end

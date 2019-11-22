@@ -13,6 +13,15 @@ RSpec.describe Tdd do
     @lista = ListaDE.new();
 
     @lista2 = ListaDE.new()
+
+    @carne_vaca = Alimento.new("Carne Vaca", 21.1, 0.0, 3.1, 50.0, 164.0)
+    @carne_cordero = Alimento.new("Cordero", 18.0, 0.0, 17.0, 20.0, 185.0)
+    @pollo = Alimento.new("Pollo", 20.6 ,0.0, 5.6, 5.7, 7.1)
+    @dietaCarne = ListaDE.new()
+    @dietaCarne.insertarHead(@carne_vaca)
+    @dietaCarne.insertarHead(@carne_cordero)
+    @dietaCarne.insertarHead(@pollo)
+
   end
 
   ################################################
@@ -70,14 +79,14 @@ RSpec.describe Tdd do
 
   describe "Lista doblemente enlazada - comprobación acceso atributos y métodos" do
     it "Debe existir un nodo de la lista con sus datos, su siguiente y su previo" do
-      expect(@lista.head.value).to eq(nil)
-      expect(@lista.head.next).to eq(nil)
-      expect(@lista.head.prev).to eq(nil)
+      expect(@node.value).to eq(nil)
+      expect(@node.next).to eq(nil)
+      expect(@node.prev).to eq(nil)
     end
 
     it "Debe existir una Lista con su cabeza y su cola" do
-      expect(@lista.head).to eq(@node)
-      expect(@lista.tail).to eq(@node)
+      expect(@lista.head).to eq(nil)
+      expect(@lista.tail).to eq(nil)
     end
 
     it "Se puede insertar un elemento en la Lista" do
@@ -100,6 +109,26 @@ RSpec.describe Tdd do
       @lista2.insertarHead("Hola")
       @lista2.insertarHead("Adiós")
       expect(@lista2.extraerTail.value).to eq("Hola")
+    end
+  end
+
+  describe "Se crea lista de alimentos" do
+    it "Se estiman correctamente las emisiones de gases diarias de una dieta" do
+      expect(@dietaCarne.emisionesDiarias).to eq(75.7)
+    end
+
+    it "Se estiman correctamente las emisiones de gases anuales de una dieta" do
+      @dietaCarne.insertarHead(@carne_vaca)
+      @dietaCarne.insertarHead(@carne_cordero)
+      @dietaCarne.insertarHead(@pollo)
+      expect(@dietaCarne.emisionesAnuales).to eq(27630.5)
+    end
+
+    it "Se estiman correctamente los km2 e uso de terreno de una dieta" do
+      @dietaCarne.insertarHead(@carne_vaca)
+      @dietaCarne.insertarHead(@carne_cordero)
+      @dietaCarne.insertarHead(@pollo)
+      expect(@dietaCarne.usoTerreno).to eq(356.1)
     end
   end
 end

@@ -7,14 +7,14 @@ class ListaDE
 
     # Initialize de la lista, establece a nil la cabeza y la cola
     def initialize()
-        @head = Node.new(nil,nil,nil)
-        @tail = Node.new(nil,nil,nil)
+        @head = nil
+        @tail = nil
         @size = 0
     end
 
     def insertarHead(value)
         nodo = Node.new(value)
-        if isNil(@head) and isNil(@tail)
+        if @head == nil and @tail == nil
             @head = nodo
             @tail = nodo
         else
@@ -27,7 +27,7 @@ class ListaDE
 
     def insertarTail(value)
        nodo = Node.new(value)
-       if isNil(@head) and isNil(@tail)
+       if @head == nil and @tail == nil
            @head = nodo
            @tail = nodo
        else
@@ -42,7 +42,7 @@ class ListaDE
         extraer = @head
         headActual = @head.prev
         @head = headActual
-        if isNil(headActual)
+        if headActual == nil
             @tail = nil
         else
             @head.next = nil
@@ -55,7 +55,7 @@ class ListaDE
         extraer = @tail
         tailActual = @tail.next
         @tail = tailActual
-        if isNil(tailActual)
+        if tailActual == nil
             @head = nil
         else
             @tail.prev = nil
@@ -64,11 +64,28 @@ class ListaDE
         return extraer
     end
 
-  def isNil (node)
-    if node.value.nil? and node.next.nil? and node.prev.nil?
-      return true
-    else
-      return false
+  def emisionesDiarias
+    emisiones = 0
+    for i in 0..self.size-1
+      emisiones += self.extraerHead.value.gei
     end
+    return emisiones
+  end
+
+  def emisionesAnuales
+    emisiones = 0
+    for i in 0..self.size-1
+      emisiones += self.extraerHead.value.gei
+    end
+    emisiones = emisiones * 365
+    return emisiones
+  end
+
+  def usoTerreno
+    uso_terreno = 0
+    for i in 0..self.size-1
+      uso_terreno += self.extraerHead.value.terreno
+    end
+    return uso_terreno
   end
 end
