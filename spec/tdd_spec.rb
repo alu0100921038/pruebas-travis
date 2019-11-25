@@ -28,6 +28,14 @@ RSpec.describe Tdd do
     #Práctica 8
     @alimento2 = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
     @alimento3 = Alimento.new("Pollo", 60, 2, 40, 2.7, 3.4)
+
+    @numeros = ListaDE.new()
+    @numeros.insertarHead(3)
+    @numeros.insertarHead(7)
+    @numeros.insertarHead(1)
+    @numeros.insertarHead(2)
+    @numeros.insertarHead(9)
+    @numeros.insertarHead(4)
   end
 
   ################################################
@@ -155,6 +163,28 @@ RSpec.describe Tdd do
 
     it "Alimento 1 está entre Alimento 2 y 3 (Operador 'between?')" do
       expect(@alimento1.between?(@alimento2, @alimento3)).to eq(true)
+    end
+  end
+
+  describe "Se enumeran correctamente las instancias de una lista DE con todos los operadores" do
+    it "Con el método collect" do
+      expect(@numeros.collect { |numero| numero*2  }).to eq ([6, 14, 2, 4, 18, 8])
+    end
+
+    it "Con el método select" do
+      expect(@numeros.select { |numero| numero % 2 == 0  }).to eq ([2, 4])
+    end
+
+    it "Con el método max" do
+      expect(@numeros.max).to eq (9)
+    end
+
+    it "Con el método min" do
+      expect(@numeros.min).to eq (1)
+    end
+
+    it "Con el método done" do
+      expect(@numeros.sort).to eq ([1, 2, 3, 4, 7, 9])
     end
   end
 end

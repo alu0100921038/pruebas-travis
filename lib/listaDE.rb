@@ -3,6 +3,7 @@
 Node = Struct.new(:value, :next, :prev)
 
 class ListaDE
+  include Enumerable
   attr_reader :head, :tail, :size
 
     # Initialize de la lista, establece a nil la cabeza y la cola
@@ -88,4 +89,12 @@ class ListaDE
     end
     return uso_terreno
   end
+
+  def each
+        nodo=@tail
+        while nodo != nil
+            yield nodo.value
+            nodo = nodo.next
+        end
+    end
 end
