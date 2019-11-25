@@ -4,10 +4,13 @@ require 'lib/listaDE'
 
 RSpec.describe Tdd do
   before :all do
+
+    #Práctica 6
     @alimento1 = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
     @menu_hombre = Alimento.new("Pollo", 60, 2, 40, 2.7, 3.4)
     @menu_mujer = Alimento.new("Cordero", 50, 3, 30, 3.1, 3)
 
+    #Práctica 7
     @node = Node.new(nil,nil,nil);
     @node2 = Node.new("Hola",nil,nil)
     @lista = ListaDE.new();
@@ -22,6 +25,9 @@ RSpec.describe Tdd do
     @dietaCarne.insertarHead(@carne_cordero)
     @dietaCarne.insertarHead(@pollo)
 
+    #Práctica 8
+    @alimento2 = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
+    @alimento3 = Alimento.new("Pollo", 60, 2, 40, 2.7, 3.4)
   end
 
   ################################################
@@ -129,6 +135,26 @@ RSpec.describe Tdd do
       @dietaCarne.insertarHead(@carne_cordero)
       @dietaCarne.insertarHead(@pollo)
       expect(@dietaCarne.usoTerreno).to eq(356.1)
+    end
+  end
+
+  ################################################
+  # Pruebas practica 8 - Comparable y Enumerable #
+  ################################################
+
+  describe "Se comparan dos alimentos con todos los operadores de Comparable" do
+    it "Alimento 2 es menor que Alimento 3 (Operador '<=')" do
+      expect(@alimento2 < @alimento3).to eq(true)
+      expect(@alimento2 <= @alimento2).to eq(true)
+    end
+
+    it "Alimento 3 es mayor que Alimento 2 (Operador '>=')" do
+      expect(@alimento3 > @alimento2).to eq(true)
+      expect(@alimento3 >= @alimento3).to eq(true)
+    end
+
+    it "Alimento 1 está entre Alimento 2 y 3 (Operador 'between?')" do
+      expect(@alimento1.between?(@alimento2, @alimento3)).to eq(true)
     end
   end
 end

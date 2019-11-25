@@ -1,6 +1,7 @@
 require "tdd/version"
 
 class Alimento
+    include Comparable
     attr_reader :nombre, :proteinas, :carbohidratos, :lipidos, :gei, :terreno
 
     def initialize (nombre, proteinas, carbohidratos, lipidos, gei, terreno)
@@ -39,5 +40,9 @@ class Alimento
 
     def impacto_ambiental
       true
+    end
+
+    def <=> (another)
+        self.valor_energetico <=> another.valor_energetico
     end
 end
