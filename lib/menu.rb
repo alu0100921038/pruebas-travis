@@ -52,6 +52,7 @@ class Menu
 end
 
 class MenuEficiente < Menu
+    include Comparable
     attr_reader :tipo_menu
 
     def initialize (platos)
@@ -77,5 +78,9 @@ class MenuEficiente < Menu
     def eficiencia_to_s
       "Gases Totales: #{self.total_gases} kgCO2eq,\n " +
       "Uso Terreno: #{self.total_terreno} m2año"
+    end
+
+    def <=> (another)
+        self.total_gases <=> another.total_gases
     end
 end

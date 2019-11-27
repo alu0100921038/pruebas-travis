@@ -18,9 +18,22 @@ RSpec.describe Tdd do
 
     @lista2 = ListaDE.new()
 
+    @chocolate = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
     @carne_vaca = Alimento.new("Carne Vaca", 21.1, 0.0, 3.1, 50.0, 164.0)
     @carne_cordero = Alimento.new("Cordero", 18.0, 0.0, 17.0, 20.0, 185.0)
     @pollo = Alimento.new("Pollo", 20.6 ,0.0, 5.6, 5.7, 7.1)
+    @camarones = Alimento.new("Camarones", 17.6, 1.5, 0.6, 18.0, 2.0)
+    @salmon = Alimento.new("Salmon", 19.9, 0.0, 13.6, 6.0, 3.7)
+    @cerdo = Alimento.new("Cerdo", 21.5, 0.0, 6.3, 7.6, 11.0)
+    @queso = Alimento.new("Queso", 25.0, 1.3, 33.0, 11.0, 41.0)
+    @cerveza = Alimento.new("Cerveza", 0.5, 3.6, 0.0, 0.24, 0.22)
+    @leche_vaca = Alimento.new("Leche Vaca", 3.3, 4.8, 3.2, 3.2, 8.9)
+    @huevos = Alimento.new("Huevos", 13.0, 1.1, 11.0, 4.2, 5.7)
+    @cafe = Alimento.new("Cafe", 0.1, 0.0, 0.0, 0.4, 0.3)
+    @tofu = Alimento.new("Tofu", 8.0, 1.9, 4.8, 2.0, 2.2)
+    @lentejas = Alimento.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
+    @nuez = Alimento.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
+
     @dietaCarne = ListaDE.new()
     @dietaCarne.insertarHead(@carne_vaca)
     @dietaCarne.insertarHead(@carne_cordero)
@@ -41,8 +54,18 @@ RSpec.describe Tdd do
     @numeros.insertarHead(4)
 
     array_menu = [@alimento2, @alimento3, @alimento4, @alimento5]
+    array_menu2 = [@alimento2, @alimento3, @alimento4, @alimento5]
+    array_menu3 = [@alimento3, @alimento4, @alimento5]
+    array_menu4 = [@alimento2, @alimento3]
     @menu = Menu.new(array_menu)
     @menu2 = MenuEficiente.new(array_menu)
+    @menu3 = MenuEficiente.new(array_menu3)
+    @menu4 = MenuEficiente.new(array_menu4)
+
+    @lista_menus = ListaDE.new()
+    @lista_menus.insertarHead(@menu2)
+    @lista_menus.insertarHead(@menu3)
+    @lista_menus.insertarHead(@menu4)
   end
 
   ################################################
@@ -257,6 +280,38 @@ RSpec.describe Tdd do
 
     it "Comprobar su superclase" do
       expect(@menu2.class.superclass).to eq(Menu)
+    end
+  end
+
+  describe "Comparación entre platos del menu" do
+    it "Alimento 2 es menor que Alimento 3" do
+      expect(@menu.platos[0] < @menu.platos[1]).to eq(true)
+    end
+
+    it "Menu2 contamina mas que Menu3" do
+      expect(@menu2 > @menu3).to eq(true)
+    end
+  end
+
+  describe "Enumerar lista de platos de un menú de una dieta" do
+    it "Método sort" do
+      expect(@lista_menus.sort).to eq([@menu4, @menu3, @menu2])
+    end
+
+    it "Método max" do
+      expect(@lista_menus.max).to eq(@menu2)
+    end
+
+    it "Método min" do
+      expect(@lista_menus.min).to eq(@menu4)
+    end
+
+    it "Método collect" do
+      expect(@lista_menus.collect { |menu| menu.total_gases }).to eq([30.6, 28.299999999999997, 5.0])
+    end
+
+    it "Método select" do
+      expect(@lista_menus.select { |menu| menu.total_gases > 30}).to eq([@menu2])
     end
   end
 end
