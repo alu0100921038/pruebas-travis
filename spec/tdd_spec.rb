@@ -199,5 +199,33 @@ RSpec.describe Tdd do
     it "Obteniendo el nombre de un plato" do
       expect(@menu.platos[2].nombre).to eq('Camarones')
     end
+
+    it "Existe un conjunto de alimentos" do
+      expect(@menu.platos.size).to eq(4)
+    end
+
+    it "Existe un conjunto de alimentos en gramos" do
+      expect(@menu.total_gramos).to eq(231.8)
+    end
+
+    it "Porcentaje de proteinas del conjunto de alimentos" do
+      expect(@menu.proteinas_porcentaje).to eq(45)
+    end
+
+    it "Porcentaje de lipidos del conjunto de alimentos" do
+      expect(@menu.lipidos_porcentaje).to eq(33)
+    end
+
+    it "Porcentaje de carbohidratos del conjunto de alimentos" do
+      expect(@menu.carbohidratos_porcentaje).to eq(21)
+    end
+
+    it "Valor Calórico Total del conjunto de alimentos" do
+      expect(@menu.valorCaloricoTotal).to eq(1311.7)
+    end
+
+    it "Se obtiene el plato formateado" do
+      expect(@menu.platos[0].to_s).to eq("Nombre: Chocolate\n Proteinas: 5.3\n Carbohidratos: 47.0\n Lipidos: 30.0\n GEI: 2.3\n Terreno: 3.4")
+    end
   end
 end
