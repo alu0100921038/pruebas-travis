@@ -1,6 +1,7 @@
 require "spec_helper"
 require 'lib/tdd'
 require 'lib/listaDE'
+require 'lib/menu'
 
 RSpec.describe Tdd do
   before :all do
@@ -28,6 +29,8 @@ RSpec.describe Tdd do
     #Práctica 8
     @alimento2 = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
     @alimento3 = Alimento.new("Pollo", 60, 2, 40, 2.7, 3.4)
+    @alimento4 = Alimento.new("Camarones", 17.6, 1.5, 0.6, 18.0, 2.0)
+    @alimento5 = Alimento.new("Cerdo", 21.5, 0.0, 6.3, 7.6, 11.0)
 
     @numeros = ListaDE.new()
     @numeros.insertarHead(3)
@@ -36,6 +39,10 @@ RSpec.describe Tdd do
     @numeros.insertarHead(2)
     @numeros.insertarHead(9)
     @numeros.insertarHead(4)
+
+    array_menu = [@alimento2, @alimento3, @alimento4, @alimento5]
+    @menu = Menu.new(array_menu)
+
   end
 
   ################################################
@@ -185,6 +192,12 @@ RSpec.describe Tdd do
 
     it "Con el método done" do
       expect(@numeros.sort).to eq ([1, 2, 3, 4, 7, 9])
+    end
+  end
+
+  describe "Clase Ruby para representar información nutricional de menús" do
+    it "Obteniendo el nombre de un plato" do
+      expect(@menu.platos[2].nombre).to eq('Camarones')
     end
   end
 end
