@@ -42,7 +42,7 @@ RSpec.describe Tdd do
 
     array_menu = [@alimento2, @alimento3, @alimento4, @alimento5]
     @menu = Menu.new(array_menu)
-
+    @menu2 = MenuEficiente.new(array_menu)
   end
 
   ################################################
@@ -226,6 +226,37 @@ RSpec.describe Tdd do
 
     it "Se obtiene el plato formateado" do
       expect(@menu.platos[0].to_s).to eq("Nombre: Chocolate\n Proteinas: 5.3\n Carbohidratos: 47.0\n Lipidos: 30.0\n GEI: 2.3\n Terreno: 3.4")
+    end
+  end
+
+  describe "Jerarquia de clases eficiencie energética" do
+    it "Valor total de las emisiones diarias de gases" do
+      expect(@menu2.total_gases).to eq(30.6)
+    end
+
+    it "Estimación metros cuadrados uso terreno" do
+      expect(@menu2.total_terreno).to eq(19.8)
+    end
+
+    it "Se obtiene la eficiencia energética formateada" do
+      expect(@menu2.eficiencia_to_s).to eq ("Gases Totales: 30.6 kgCO2eq,\n Uso Terreno: 19.8 m2año")
+    end
+
+    it "Comprobar clase" do
+      expect(@menu2.class).to eq(MenuEficiente)
+    end
+
+    it "Comprobar el tipo" do
+      expect(@menu2.is_a?Object).to eq(true)
+    end
+
+    it "Comprobar pertenencia a una jerarquía" do
+      expect(@menu2.is_a?MenuEficiente).to eq(true)
+      expect(@menu2.is_a?Menu).to eq(true)
+    end
+
+    it "Comprobar su superclase" do
+      expect(@menu2.class.superclass).to eq(Menu)
     end
   end
 end

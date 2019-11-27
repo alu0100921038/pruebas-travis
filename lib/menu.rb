@@ -50,3 +50,32 @@ class Menu
       return calorias_totales
     end
 end
+
+class MenuEficiente < Menu
+    attr_reader :tipo_menu
+
+    def initialize (platos)
+      super(platos)
+    end
+
+    def total_gases
+      gases = 0
+      @platos.each do |plato|
+        gases += plato.gei
+      end
+      return gases
+    end
+
+    def total_terreno
+      terreno = 0
+      @platos.each do |plato|
+        terreno += plato.terreno
+      end
+      return terreno
+    end
+
+    def eficiencia_to_s
+      "Gases Totales: #{self.total_gases} kgCO2eq,\n " +
+      "Uso Terreno: #{self.total_terreno} m2año"
+    end
+end
