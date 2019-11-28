@@ -1,6 +1,7 @@
 require "tdd/version"
 
 class Menu
+    include Comparable
     attr_reader :platos
 
     def initialize (platos)
@@ -49,6 +50,10 @@ class Menu
       end
       return calorias_totales
     end
+
+    def <=> (another)
+        self.valorCaloricoTotal <=> another.valorCaloricoTotal
+    end
 end
 
 class MenuEficiente < Menu
@@ -75,7 +80,7 @@ class MenuEficiente < Menu
       return terreno
     end
 
-    def eficiencia_to_s
+    def to_s
       "Gases Totales: #{self.total_gases} kgCO2eq,\n " +
       "Uso Terreno: #{self.total_terreno} m2año"
     end

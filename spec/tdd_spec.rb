@@ -262,7 +262,7 @@ RSpec.describe Tdd do
     end
 
     it "Se obtiene la eficiencia energética formateada" do
-      expect(@menu2.eficiencia_to_s).to eq ("Gases Totales: 30.6 kgCO2eq,\n Uso Terreno: 19.8 m2año")
+      expect(@menu2.to_s).to eq ("Gases Totales: 30.6 kgCO2eq,\n Uso Terreno: 19.8 m2año")
     end
 
     it "Comprobar clase" do
