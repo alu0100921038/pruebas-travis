@@ -66,6 +66,9 @@ RSpec.describe Tdd do
     @lista_menus.insertarHead(@menu2)
     @lista_menus.insertarHead(@menu3)
     @lista_menus.insertarHead(@menu4)
+
+    @array_menus = [@chocolate, @carne_vaca, @carne_cordero, @pollo, @camarones]
+    @precios = [5, 13, 15, 11, 20]
   end
 
   ################################################
@@ -314,4 +317,27 @@ RSpec.describe Tdd do
       expect(@lista_menus.select { |menu| menu.total_gases > 30}).to eq([@menu2])
     end
   end
+
+  ################################################
+  # Pruebas practica 9 - Programación Funcional #
+  ################################################
+
+  describe "Pruebas calculo aporte energetico de los menus" do
+   it "Aporte energetico menu " do
+     expect((@array_menus.collect { |alimento| alimento.valor_energetico}).reduce(:+)).to eq(1031.1)
+   end
+   it "Plato con máxima huella nutricional " do
+     expect((@array_menus.collect { |alimento| alimento.valor_energetico}.max)).to eq(479.2)
+   end
+   it "Plato con máxima huella nutricional " do
+     expect((@array_menus.collect { |alimento| alimento.huella_nutricional}.max)).to eq([1, @chocolate])
+   end
+ end
+
+ describe "Aumentando precios acorde al menú de máxima huella " do
+   it "Aumentando precios acorde al plato de máxima huella nutricional" do
+     indice = @array_menus.collect { |alimento| alimento.huella_nutricional}.max.first
+     expect(@precios.map{ |y| y * indice}).to eq ([5, 13, 15, 11, 20])
+   end
+ end
 end

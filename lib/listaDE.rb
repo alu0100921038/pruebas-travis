@@ -2,6 +2,7 @@
 # Incluye el valor del nodo y los nodos siguiente y previo a este
 Node = Struct.new(:value, :next, :prev)
 
+# @author Juan Martínez
 class ListaDE
   include Enumerable
   attr_reader :head, :tail, :size
@@ -13,6 +14,10 @@ class ListaDE
         @size = 0
     end
 
+    # Inserta el valor pasado a la lista por el head
+    #
+    # @param value
+    # @return
     def insertarHead(value)
         nodo = Node.new(value)
         if @head == nil and @tail == nil
@@ -26,6 +31,10 @@ class ListaDE
         @size+=1
     end
 
+    # Inserta el valor pasado a la lista por el tail
+    #
+    # @param value
+    # @return
     def insertarTail(value)
        nodo = Node.new(value)
        if @head == nil and @tail == nil
@@ -39,6 +48,9 @@ class ListaDE
        @size+=1
    end
 
+   # Extrae el primer valor de la lista.
+   #
+   # @return
    def extraerHead ()
         extraer = @head
         headActual = @head.prev
